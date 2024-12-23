@@ -369,7 +369,7 @@ export default function Draw() {
     tempCanvas.remove();
   };
 
-  return (
+    return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       {!showCanvas && (
       <div className="flex-1 flex items-center justify-center">
