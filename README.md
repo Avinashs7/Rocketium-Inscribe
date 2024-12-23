@@ -64,26 +64,41 @@ server/
 LICENSE
 README.md
 ```
-
 ## Features
+- Create a new canvas or open an existing one.
+- Draw rectangles, circles, and text on the canvas.
+- Customize text with different font styles and colors.
+- Export the drawing as SVG or PNG.
+- Revisit and modify the canvas anytime if you remember the unique canvas name.
 
-- **Client**:
+## Getting Started
 
-  - Drawing tools: rectangle, circle, and text.
-  - Export canvas as SVG and PNG.
-  - Clear the canvas.
-  - Responsive design using Tailwind CSS.
+### 1. Create a New Canvas or Open an Existing One
+- **To Create a New Canvas:** Enter a unique name for your new canvas.
+- **To Open an Existing Canvas:** You must know the unique name of the canvas you want to open.
 
-- **Server**:
-  - RESTful API endpoints for canvas operations.
-  - File export and download capabilities.
+### 2. Drawing on the Canvas
+- Once the canvas is open, you can draw the following:
+  - **Rectangle:** Select the rectangle tool from the toolbar and draw on the canvas.
+  - **Circle:** Select the circle tool and draw on the canvas.
+  - **Text:** Select the text tool, click anywhere on the canvas, and type the content. You can customize the font style and color of the text.
+
+### 3. Persisting the Canvas
+- Your drawing is automatically saved persistently under the given canvas name.
+
+### 4. Exporting the Canvas
+- Anytime, you can export your drawing as an **SVG** or **PNG** file.
+
+### 5. Revisiting and Modifying the Canvas
+- If you remember the unique name of a previously created canvas, you can open and modify it at any time.
 
 ## Setup Instructions
 
 ### Prerequisites
 
-- Node.js
-- MongoDB
+- [MongoDB](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3)
+- [Node](https://nodejs.org/en/download/) ^20.0.0
+- [npm](https://nodejs.org/en/download/package-manager/)
 
 ### Installation
 
@@ -143,7 +158,18 @@ The client will be available at `http://localhost:5173` (if using Vite) and the 
 
 ## Environment Variables
 
-Create a `.env` file in the `server` directory with the help of `.env.sample`:
+Create a `.env` file in the `server` directory with the help of `.env.sample`
+
+# Enhancements
+
+- **Authentication/Authorization**:
+Implement authentication and authorization features to store user-specific canvases and provide security for user data. This ensures that users can securely manage their drawings and only access their own canvases.
+
+- **History of the User's Drawings**:
+Enable users to view a history of their previously created canvases. This will allow them to revisit and modify past drawings, enhancing the overall user experience.
+
+- **Resizing Diagrams for Responsive View**:
+Ensure that the canvas or drawings automatically resize and adjust to fit various screen sizes and devices, providing a seamless experience on desktops, tablets, and mobile phones.
 
 ## License
 
