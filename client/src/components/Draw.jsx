@@ -39,7 +39,7 @@ export default function Draw() {
 
   const handleUpdate=async()=>{
     if(canvasId.length>0 && canvasId.trim()){
-      await axios.get(`${SERVER_URL}/canvas/id/${canvasId}`)
+      await axios.get(`${SERVER_URL}/api/v1/canvas/id/${canvasId}`)
       .then((data)=>{
         setDrawnShapes(data?.data?.data?.elements);
       })
@@ -110,7 +110,7 @@ export default function Draw() {
     if (drawingName.trim() || fetchDrawingName.trim()) {
       try{
         if(showFetchInput){
-          await axios.get(`${SERVER_URL}/canvas/${fetchDrawingName}`)
+          await axios.get(`${SERVER_URL}/api/v1/canvas/${fetchDrawingName}`)
           .then((data)=>{
             setDrawnShapes(data?.data?.data?.elements);
             setCanvasId(data?.data?.data?._id);
@@ -119,7 +119,7 @@ export default function Draw() {
           .catch((err)=>console.error(err));
         }
         else{
-          await axios.post(`${SERVER_URL}/canvas`,{
+          await axios.post(`${SERVER_URL}/api/v1/canvas`,{
             name:drawingName
           }).then((data)=>{
             setCanvasId(data?.data?.data?._id);
@@ -175,7 +175,7 @@ export default function Draw() {
     if (!isDrawing || tool === 'text') return;
     const { x, y } = getScaledCoordinates(e);
     if (tool === 'rectangle') {
-      await axios.patch(`${SERVER_URL}/canvas/${canvasId}`,{
+      await axios.patch(`${SERVER_URL}/api/v1/canvas/${canvasId}`,{
           type: tool,
           x: startX,
           y: startY,
@@ -196,7 +196,7 @@ export default function Draw() {
       }]);
     } else if (tool === 'circle') {
       const radius = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
-      await axios.patch(`${SERVER_URL}/canvas/${canvasId}`,{
+      await axios.patch(`${SERVER_URL}/api/v1/canvas/${canvasId}`,{
         type: 'circle',
         x: startX,
         y: startY,
@@ -222,7 +222,7 @@ export default function Draw() {
   const clearCanvas = async() => {
     context.clearRect(0, 0, canvasSize.width / scale, canvasSize.height / scale);
     setDrawnShapes([]);
-    await axios.delete(`${SERVER_URL}/canvas/${canvasId}`).then((data)=>{
+    await axios.delete(`${SERVER_URL}/api/v1/canvas/${canvasId}`).then((data)=>{
 
     })
     .catch((err)=>{
@@ -277,7 +277,7 @@ export default function Draw() {
         context.font = `${newShapes.fontSize}px ${newShapes.font}`;
         context.fillText(newShapes.text, newShapes.x, newShapes.y);
       }
-      await axios.patch(`${SERVER_URL}/canvas/${canvasId}`,{
+      await axios.patch(`${SERVER_URL}/api/v1/canvas/${canvasId}`,{
         type: 'text',
         x: startX,
         y: startY,
